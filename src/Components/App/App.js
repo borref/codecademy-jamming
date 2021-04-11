@@ -10,19 +10,22 @@ const tracks = [
     id: 'Stan10',
     name: "The Girl From Ipanema",
     artist: "Stan Getz, Joao Gilberto, Astrud Gilberto",
-    album: "The Girl From Ipanema"
+    album: "The Girl From Ipanema",
+    uri: "http://asdasm.Stan10.xyz"
   },
   {
     id: 'Chet10',
     name: "That Old Feeling",
     artist: "Chet Baker",
-    album: "Chet Baker Sings"
+    album: "Chet Baker Sings",
+    uri: "http://asdasm.Chet10.xyz"
   },
   {
     id: 'Sidney10',
     name: "Summertime",
     artist: "Sidney Bechet",
-    album: "Jazz Classics"
+    album: "Jazz Classics",
+    uri: "http://asdasm.Sidney10.xyz"
   }
 ];
 
@@ -39,6 +42,7 @@ class App extends React.Component {
     this.addTrack = this.addTrack.bind(this);
     this.removeTrack = this.removeTrack.bind(this);
     this.updatePlaylistName = this.updatePlaylistName.bind(this);
+    this.savePlaylist = this.savePlaylist.bind(this);
   }
 
   addTrack(track) {
@@ -65,6 +69,19 @@ class App extends React.Component {
     this.setState({playlistName: name});
   }
 
+  savePlaylist() {
+    const trackURIs = this.state.playlistTracks.map(savedTrack => savedTrack.uri);
+
+    console.log('About to save:');
+    console.log('trackURIs:', trackURIs);
+    console.log('name:', this.state.playlistName);
+
+    this.setState({
+      playlistName: 'New Playlist',
+      playlistTracks: []
+    });
+  }
+
   render() {
     return (
       <div>
@@ -79,7 +96,8 @@ class App extends React.Component {
               playlistName={this.state.playlistName}
               playlistTracks={this.state.playlistTracks}
               onRemove={this.removeTrack}
-              onNameChange={this.updatePlaylistName} />
+              onNameChange={this.updatePlaylistName}
+              onSave={this.savePlaylist} />
           </div>
         </div>
       </div>
