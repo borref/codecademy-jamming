@@ -33,7 +33,7 @@ class App extends React.Component {
     this.state = {
       searchResults: tracks,
       playlistName: '',
-      playlistTracks: tracks
+      playlistTracks: []
     };
 
     this.addTrack = this.addTrack.bind(this);
