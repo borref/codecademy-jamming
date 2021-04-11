@@ -6,7 +6,36 @@ import Playlist from '../Playlist/Playlist';
 
 import './App.css';
 
+const tracks = [
+  {
+    id: 'Stan10',
+    name: "The Girl From Ipanema",
+    artist: "Stan Getz, Joao Gilberto, Astrud Gilberto",
+    album: "The Girl From Ipanema"
+  },
+  {
+    id: 'Chet10',
+    name: "That Old Feeling",
+    artist: "Chet Baker",
+    album: "Chet Baker Sings"
+  },
+  {
+    id: 'Sidney10',
+    name: "Summertime",
+    artist: "Sidney Bechet",
+    album: "Jazz Classics"
+  }
+];
+
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      searchResults: tracks
+    };
+  }
+
   render() {
     return (
       <div>
