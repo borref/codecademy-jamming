@@ -5,36 +5,14 @@ import SearchBar from '../SearchBar/SearchBar';
 import SearchResults from '../SearchResults/SearchResults';
 import Playlist from '../Playlist/Playlist';
 
-const tracks = [
-  {
-    id: 'Stan10',
-    name: "The Girl From Ipanema",
-    artist: "Stan Getz, Joao Gilberto, Astrud Gilberto",
-    album: "The Girl From Ipanema",
-    uri: "http://asdasm.Stan10.xyz"
-  },
-  {
-    id: 'Chet10',
-    name: "That Old Feeling",
-    artist: "Chet Baker",
-    album: "Chet Baker Sings",
-    uri: "http://asdasm.Chet10.xyz"
-  },
-  {
-    id: 'Sidney10',
-    name: "Summertime",
-    artist: "Sidney Bechet",
-    album: "Jazz Classics",
-    uri: "http://asdasm.Sidney10.xyz"
-  }
-];
+import Spotify from '../../util/Spotify';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      searchResults: tracks,
+      searchResults: [],
       playlistName: '',
       playlistTracks: []
     };
@@ -71,7 +49,9 @@ class App extends React.Component {
   }
 
   search(term) {
-    console.log(term);
+    Spotify.search(term).then(tracks => {
+      this.setState({searchResults: tracks});
+    });
   }
 
   savePlaylist() {
